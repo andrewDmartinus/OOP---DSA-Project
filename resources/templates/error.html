@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: navbar}"></div>
+
+<div class="container mt-5">
+    <h2 class="text-forest-brown">An Error Occurred</h2>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+    <div th:unless="${error}" class="alert alert-danger">
+        An unexpected error occurred. Please try again later.
+        <p>Status: <span th:text="${#httpServletResponse.status} ?: 'N/A'"></span></p>
+        <p>Message: <span th:text="${#httpServletRequest.getAttribute('javax.servlet.error.message')} ?: 'N/A'"></span></p>
+    </div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>
